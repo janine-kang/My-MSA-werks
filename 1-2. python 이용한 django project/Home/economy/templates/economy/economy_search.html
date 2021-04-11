@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} 경제기사 검색 페이지 {% endblock %}
+
+{% block content %}
+<div id="content">
+    <h1> Search Engine for Economy Articles </h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="Search">
+    </form>
+    <br/><br/>
+    {% if search_list %}
+        {% for economy in search_list %}
+            <h2>{{economy.title}}</h2>
+            <p>{{economy.summary}}</p>
+        {% endfor %}
+    {% elif search_keyword %}
+        [{{ search_keyword }}]의 검색 결과가 없습니다.
+    {% endif %}
+</div>
+{% endblock %}

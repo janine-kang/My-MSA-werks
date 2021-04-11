@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} Breaking Economy News {% endblock %}
+
+{% block content %}
+<div id="content">
+    <h1>Economy Breakings</h1>
+    
+    <form action="/economy/refresh" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Refresh">
+
+    <ul>
+        {% for economy in object_list %}
+
+            <li><a href="{% url 'economy:e_detail' economy.id %}" target='_blank'>[{{ economy.paper }}] {{ economy }}</a></li>
+
+        {% endfor %}
+    </ul>
+
+
+    <div>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"> <<< </a>
+        {% endif %}
+
+        [ Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages}} ]
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"> >>> </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

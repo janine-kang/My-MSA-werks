@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <title>{% block title %}Project A{% endblock %}</title>
+
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "css/base.css" %}{% endblock %}" />
+        <link rel="stylesheet" type="text/css" href="{% block extrastyle %}{% endblock %}" />
+
+    </head>
+
+    <body>
+
+        <div id="header">
+            <h2 class="maintitle">Breaking News in Naver</h2>
+                <h4 class="welcome">Welcome! /
+                    <a href="#">Logout</a>
+                </h4>
+        </div>
+
+        <div id="menu">
+            <li><a href="{% url 'home' %}"> Home </a></li>
+            <li><a href="{% url 'itnews:index' %}"> IT </a></li>
+            <li><a href="{% url 'economy:e_index' %}"> Economy </a></li>
+            <li><a href="#">Search&bigtriangledown;</a>
+                <ul>
+                    <li><a href="{% url 'itnews:search' %}">IT</a></li>
+                    <li><a href="{% url 'economy:e_search' %}">Economy</a></li>
+                </ul>
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+        </div>
+
+        {% block content %}{% endblock %}
+
+        {% block footer %}{% endblock %}
+
+    </body>
+</html>
