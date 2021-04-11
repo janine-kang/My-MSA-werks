@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %} Breaking IT News {% endblock %}
+
+{% block content %}
+<div id="content">
+    <h1>IT Breakings</h1>
+    {% comment %} <form action="/IT/refresh" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Refresh"> {% endcomment %}
+
+    <ul>
+        {% for itnews in object_list %}
+
+            <li><a href="{% url 'itnews:detail' itnews.id %}" target='_blank'>[{{ itnews.paper }}] {{ itnews }}</a></li>
+
+        {% endfor %}
+    </ul>
+
+
+    <div>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"> <<< </a>
+        {% endif %}
+
+        [ Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages}} ]
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"> >>> </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  my-mysql:
+    container_name: mysql_server
+    image: edowon0623/mymysql
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment: 
+      MYSQL_DATABASE: mydb
+    networks:
+      - my-network
+  my-django:
+    image: edowon0623/mydjango
+    ports:
+      - 8000:8000
+    depends_on:
+      - my-mysql
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge

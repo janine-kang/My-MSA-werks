@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} home.html {% endblock %}
+
+{% load static %}
+{% block extrastyle %}{% static 'css/home.css' %}{% endblock %}
+
+{% block content %}
+    <div id="content_home">
+        <div id="homeimg">
+            <img src="{% static 'img/image.png' %}" style="height: 600px;"/>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div id="footer">
+        &copy; 1st Project Made by Yeonok-Kang.
+    </div>
+{% endblock %}
